@@ -15,32 +15,48 @@ with open('infos/usernames.txt', 'r') as f:
 with open('infos/messages.txt', 'r') as f:
     messages = [line.strip() for line in f]
 
-usernamesForAccount = config["usernamesForAccount"]
 
-if len(accounts) * usernamesForAccount < len(usernames):
-    print('Problem pasi kemi ' + (len(accounts)) + ' accounte')
-    print('Problem pasi kemi ' + (len(accounts) * usernamesForAccount) + ' username mundesi per ti derguar mesazh')
-    print('Problem pasi kemi ' + (len(usernames)) + ' qe duam ti dergojme mesazh')
-    print(
-        'Problem pasi kemi ' + (len(usernames) - (len(accounts) * usernamesForAccount)) + ' accounte pa i derguar mesazh')
+def send_messages(account, list):
 
-for account in accounts:
-    if not usernames:
-        break
-
+    print("Sending message from "+account["username"])
     # Auto login
     insta = InstaDM(username=account["username"],
                     password=account["password"], headless=False)
 
-    for i in range(usernamesForAccount):
+    for i in range(len(list)):
 
-        if not usernames:
+        if not list:
             break
 
-        username = usernames.pop()
+        username = list.pop()
 
         # Send message
         insta.sendMessage(
             user=username, message=random.choice(messages))
 
     insta.teardown()
+
+
+usernamesForAccount = config["usernamesForAccount"]
+
+capacity = len(accounts) * usernamesForAccount
+toSent = len(usernames)
+
+if capacity < toSent:
+    print('Problem pasi kemi ' + str(len(accounts)) + ' accounte')
+    print('Problem pasi kemi ' + str(len(accounts) * usernamesForAccount) + ' username mundesi per ti derguar mesazh')
+    print('Problem pasi kemi ' + str(len(usernames)) + ' qe duam ti dergojme mesazh')
+    print('Problem pasi kemi ' + str(
+        len(usernames) - (len(accounts) * usernamesForAccount)) + ' username pa i derguar mesazh')
+    exit()
+
+
+for account in accounts:
+    if not usernames:
+        break
+    usernamesForAccountList = list()
+    for i in range(usernamesForAccount):
+        if not usernames:
+            break
+        usernamesForAccountList.append(usernames.pop())
+    send_messages(account, usernamesForAccountList)
