@@ -24,3 +24,16 @@ def send_messages(account, list):
             user=username, message=random.choice(messages))
 
     insta.teardown()
+
+
+def send_groupmessages(account, list):
+    print("Sending message from " + account["username"])
+    # Auto login
+    insta = InstaDM(username=account["username"],
+                    password=account["password"], headless=False)
+
+    # Send message
+    insta.sendGroupMessage(
+        users=list, message=random.choice(messages))
+
+    insta.teardown()
