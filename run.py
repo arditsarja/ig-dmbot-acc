@@ -37,6 +37,7 @@ for account in accounts:
             break
         usernamesForAccountList.append(usernames.pop())
     # util.send_messages(account, usernamesForAccountList)
+    # util.send_groupmessages(account, usernamesForAccountList)
 
     # eshte multithreading por nuk me pelqen
     t = Thread(target=util.send_messages, args=(account, usernamesForAccountList,))  # get number for place in list `buttons`
