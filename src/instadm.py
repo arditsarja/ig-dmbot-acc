@@ -87,10 +87,11 @@ class InstaDM(object):
         # homepage
         self.driver.get('https://instagram.com/?hl=en')
         self.__random_sleep__(3, 5)
-        if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 10):
-            self.__get_element__(
-                self.selectors['accept_cookies'], 'xpath').click()
-            self.__random_sleep__(3, 5)
+        self.__random_sleep1__(3, 5)
+        # if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 3):
+        #     self.__get_element__(
+        #         self.selectors['accept_cookies'], 'xpath').click()
+        #     self.__random_sleep__(3, 5)
         if self.__wait_for_element__(self.selectors['home_to_login_button'], 'xpath', 10):
             self.__get_element__(
                 self.selectors['home_to_login_button'], 'xpath').click()
@@ -345,6 +346,11 @@ class InstaDM(object):
 
     def __random_sleep__(self, minimum=2, maximum=7):
         t = randint(minimum, maximum)
+        logging.info(f'Wait {t} seconds')
+        # sleep(t)
+
+    def __random_sleep1__(self, minimum=2, maximum=7):
+        t = 3
         logging.info(f'Wait {t} seconds')
         sleep(t)
 
