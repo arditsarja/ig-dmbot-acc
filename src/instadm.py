@@ -350,7 +350,7 @@ class InstaDM(object):
         sleep(t)
 
     # def __random_sleep1__(self, minimum=2, maximum=7):
-    #     t = 3
+    #     t = 5
     #     logging.info(f'Wait {t} seconds')
     #     sleep(t)
 
