@@ -29,6 +29,9 @@ buttons = []
 threads = []
 
 for account in accounts:
+    if not account.get('password'):
+        account['password'] = config["defaultAccountPassword"]
+
     if not usernames:
         break
     usernamesForAccountList = list()
