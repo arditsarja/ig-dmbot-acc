@@ -15,7 +15,7 @@ DEFAULT_IMPLICIT_WAIT = 1
 
 class InstaDM(object):
 
-    def __init__(self, username, password, headless=True, instapy_workspace=None, profileDir=None):
+    def __init__(self, username, password, timewait, headless=True, instapy_workspace=None, profileDir=None):
         self.selectors = {
             "accept_cookies": "//button[text()='Accept']",
             "home_to_login_button": "//button[text()='Log In']",
@@ -78,16 +78,16 @@ class InstaDM(object):
                 """)
 
         try:
-            self.login(username, password)
+            self.login(username, password, timewait)
         except Exception as e:
             logging.error(e)
             print(str(e))
 
-    def login(self, username, password):
+    def login(self, username, password, timewait):
         # homepage
         self.driver.get('https://instagram.com/?hl=en')
         self.__random_sleep__(3, 5)
-        # self.__random_sleep1__(3, 5)
+        # sleep(timewait)
         if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 3):
             self.__get_element__(
                 self.selectors['accept_cookies'], 'xpath').click()
@@ -234,8 +234,8 @@ class InstaDM(object):
 
         # Definitely a better way to do this:
         actions = ActionChains(self.driver)
-        actions.send_keys(Keys.TAB*2 + Keys.ENTER).perform()
-        actions.send_keys(Keys.TAB*4 + Keys.ENTER).perform()
+        actions.send_keys(Keys.TAB * 2 + Keys.ENTER).perform()
+        actions.send_keys(Keys.TAB * 4 + Keys.ENTER).perform()
 
         if self.__wait_for_element__(f"//a[@href='/direct/t/{chatID}']", 'xpath', 10):
             self.__get_element__(
@@ -348,11 +348,6 @@ class InstaDM(object):
         t = randint(minimum, maximum)
         logging.info(f'Wait {t} seconds')
         sleep(t)
-
-    # def __random_sleep1__(self, minimum=2, maximum=7):
-    #     t = 5
-    #     logging.info(f'Wait {t} seconds')
-    #     sleep(t)
 
     def __scrolldown__(self):
         self.driver.execute_script(

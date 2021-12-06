@@ -28,7 +28,10 @@ buttons = []
 
 threads = []
 
+timewait = 5
+
 for account in accounts:
+    timewait += 5
     if not account.get('password'):
         account['password'] = config["defaultAccountPassword"]
 
@@ -42,15 +45,14 @@ for account in accounts:
     # util.send_messages(account, usernamesForAccountList)
     # util.send_groupmessages(account, usernamesForAccountList)
 
-    # eshte multithreading por nuk me pelqen
-    t = Thread(target=util.send_messages, args=(account, usernamesForAccountList,))  # get number for place in list `buttons`
+    t = Thread(target=util.send_messages,
+               args=(account, usernamesForAccountList, timewait,))  # get number for place in list `buttons`
     threads.append(t)
     buttons.append(False)  # create place
 
 for t in threads:
     print(t.name)
     t.start()
-
 
 for t in threads:
     print(t.name)
