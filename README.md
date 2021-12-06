@@ -13,6 +13,9 @@ change account after it sends message to 10 usernames and then it will go to the
 4.  Run the bot with this command --> `python run.py`
 5.  To update the code --> `git pull`
 
+
+Put headless=True to remove window
+
 ## Donate Here: PayPal --> https://paypal.me/redidev.
 
 Thank You!

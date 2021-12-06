@@ -29,6 +29,7 @@ def send_messages(account, list, timewait):
 def send_groupmessages(account, list):
     print("Sending message from " + account["username"])
     # Auto login
+    # Put headless=True to remove window
     insta = InstaDM(username=account["username"],
                     password=account["password"], headless=False)
 
