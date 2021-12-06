@@ -7,7 +7,6 @@ with open('infos/messages.txt', 'r') as f:
 
 
 def send_messages(account, list, timewait):
-    global insta
     print("Sending message from " + account["username"])
     # Auto login
     insta = InstaDM(username=account["username"],
