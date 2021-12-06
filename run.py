@@ -1,5 +1,6 @@
 import json
 from src import util
+from threading import Thread
 
 f = open('infos/accounts.json', )
 accounts = json.load(f)
@@ -24,6 +25,9 @@ if capacity < toSent:
         len(usernames) - (len(accounts) * usernamesForAccount)) + ' username pa i derguar mesazh')
     exit()
 
+buttons = []
+
+threads = []
 
 for account in accounts:
     if not usernames:
@@ -34,3 +38,11 @@ for account in accounts:
             break
         usernamesForAccountList.append(usernames.pop())
     util.send_messages(account, usernamesForAccountList)
+
+    # eshte multithreading por nuk me pelqen
+    # t = Thread(target=util.send_messages, args=(account, usernamesForAccountList,))  # get number for place in list `buttons`
+    # t.start()
+    # threads.append(t)
+    # buttons.append(False)  # create place
+    # for t in threads:
+    #     t.join()

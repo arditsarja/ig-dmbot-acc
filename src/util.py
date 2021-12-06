@@ -1,9 +1,9 @@
 import random
+
 from src import InstaDM
 
 with open('infos/messages.txt', 'r') as f:
     messages = [line.strip() for line in f]
-
 
 
 def send_messages(account, list):
