@@ -11,7 +11,6 @@ config = json.load(f)
 with open('infos/usernames.txt', 'r') as f:
     usernames = [line.strip() for line in f]
 
-
 usernamesForAccount = config["usernamesForAccount"]
 
 capacity = len(accounts) * usernamesForAccount
@@ -37,12 +36,18 @@ for account in accounts:
         if not usernames:
             break
         usernamesForAccountList.append(usernames.pop())
-    util.send_messages(account, usernamesForAccountList)
+    # util.send_messages(account, usernamesForAccountList)
 
     # eshte multithreading por nuk me pelqen
-    # t = Thread(target=util.send_messages, args=(account, usernamesForAccountList,))  # get number for place in list `buttons`
-    # t.start()
-    # threads.append(t)
-    # buttons.append(False)  # create place
-    # for t in threads:
-    #     t.join()
+    t = Thread(target=util.send_messages, args=(account, usernamesForAccountList,))  # get number for place in list `buttons`
+    threads.append(t)
+    buttons.append(False)  # create place
+
+for t in threads:
+    print(t.name)
+    t.start()
+
+
+for t in threads:
+    print(t.name)
+    t.join()
