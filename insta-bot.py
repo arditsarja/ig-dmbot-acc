@@ -86,7 +86,7 @@ def login_to_instagram(browser):
     # Save your login info? Not now
     browser.implicitly_wait(30)
     browser.find_element_by_xpath(
-        "//*[@id='react-root']/section/main/div/div/div/div/button").click()
+        "//*[@id='react-root']/div/div/section/main/div/div/div/div/button").click()
 
     # Turn on notifications? Not now
     browser.implicitly_wait(30)
@@ -302,18 +302,19 @@ def run_engine():
 
 
 if __name__ == "__main__":
-    root = Tk()
-    root.title('Instagram Comment/Like Bot')
-    root.resizable(False, False)
-    root.geometry("520x460")
-    main_button = Button(root,
-                         text="START BOT",
-                         bg='#292929',
-                         fg='#ffffff',
-                         font=25,
-                         command=run_engine,
-                         width=25).place(relx=0.3, rely=0.5)
-    Button(root, text="COMMENT BOT SETTING", command=setting_ui,
-           width=25).place(relx=0.35, rely=0.6)
-
-    root.mainloop()
+    run_engine()
+    # root = Tk()
+    # root.title('Instagram Comment/Like Bot')
+    # root.resizable(False, False)
+    # root.geometry("520x460")
+    # main_button = Button(root,
+    #                      text="START BOT",
+    #                      bg='#292929',
+    #                      fg='#ffffff',
+    #                      font=25,
+    #                      command=run_engine,
+    #                      width=25).place(relx=0.3, rely=0.5)
+    # Button(root, text="COMMENT BOT SETTING", command=setting_ui,
+    #        width=25).place(relx=0.35, rely=0.6)
+    #
+    # root.mainloop()
