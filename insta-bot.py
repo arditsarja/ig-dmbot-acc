@@ -111,7 +111,7 @@ def automate_instagram(browser):
         # Click first thumbnail to open
         browser.implicitly_wait(30)
         first_thumbnail = browser.find_element_by_xpath(
-            "//*[@id='react-root']/section/main/article/div[1]/div/div/div[1]/div[1]/a/div/div[2]")
+            "//*[@id='react-root']/div/div/section/main/article/div[1]/div/div/div[1]/div[1]/a/div/div[2]")
         first_thumbnail.click()
 
         sleep(randint(1, 2))
